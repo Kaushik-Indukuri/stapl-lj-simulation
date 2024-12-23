@@ -1,0 +1,16 @@
+# LJ simulation example
+units           lj          # Using LJ units (ignored for now)
+atom_style      atomic      # Atomic particles (ignored for now)
+
+# System definition
+create_box      1 10 10 10  # type, lx, ly, lz
+create_atoms    1 random 100 12345 NULL  # type, style, N, seed
+
+# Force field parameters
+pair_style      lj/cut 2.5  # LJ potential with cutoff at 2.5σ
+pair_coeff      1 1 1.0 1.0 # type1 type2 ε σ
+
+# Simulation parameters
+timestep        0.005       # Integration timestep in LJ units
+thermo         100         # Output frequency
+run           1000         # Number of timesteps to run
