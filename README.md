@@ -16,9 +16,20 @@ A simple molecular dynamics simulation program implementing the Lennard-Jones po
 
 #### Prerequisites
 
-- CMake (>= 3.10)
+- CMake (>= 2.8.12.2)
 - C++17 compatible compiler
 - Make or equivalent build system
+
+#### Setting Up STAPL in Illinois Campus Cluster
+
+```bash
+module load boost/1.71.0
+module load openmpi/4.1.1-gcc-9.2.0
+module show boost/1.71.0
+# Look at the LD_LIBRARY_PATH environment variable and copy the path excluding the ‘lib’ directory
+# It should be something like: /usr/local/boost/1.71.0
+export BOOST_ROOT=<root path for boost>
+```
 
 #### Build Instructions
 
@@ -33,8 +44,10 @@ cd build
 
 # Configure and build
 cmake ..
-make
+gmake platform=LINUX_gcc stl=${HOME}/stapl-developer/tools/libstdc++/9.2.0
 ```
+
+If it works then you should have a static stapl library file and a static stapl runtime library file (stapl-developer/lib/libstapl.a and stapl-developer/lib/libstapl_rt.a)
 
 ## Running Simulations
 
