@@ -12,9 +12,10 @@ add_executable(lj_sim
 )
 
 # Include directories
-target_include_directories(lj_sim PRIVATE ${CMAKE_SOURCE_DIR}/src)
+include_directories(${CMAKE_SOURCE_DIR}/src)
+link_directories(${CMAKE_SOURCE_DIR}/lib)
 
 # Set compiler flags
 if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
-    target_compile_options(lj_sim PRIVATE -Wall -Wextra -O3)
+    add_definitions(-Wall -Wextra -O3)
 endif()
